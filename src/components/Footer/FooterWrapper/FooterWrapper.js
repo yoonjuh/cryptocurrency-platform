@@ -1,8 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
-import {Link} from 'react-router-dom';
 import FooterNavWrapper from '../FooterNavWrapper';
-import FooterLogo from '../FooterLogo';
+import FooterLogoSection from '../FooterLogoSection';
 import CopyRight from '../CopyRight';
 
 const navItems = [
@@ -51,7 +50,7 @@ const UpperSection = styled.div`
   background-color: #323232;
   justify-content: space-between;
   flex-direction: column;
-  /* padding: 0.7rem 1rem; */
+
   @media screen and (min-width: 960px) {
     flex-direction: row;
     align-self: bottom;
@@ -66,7 +65,7 @@ const UpperSection = styled.div`
 const FooterWrapper = () => (
   <FooterContainer>
     <UpperSection>
-      <FooterLogo />
+      <FooterLogoSection />
       <FooterNavWrapper navItems={navItems} />
     </UpperSection>
     <CopyRight />
