@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import Img from '../../../img/free_logo2.png';
+import LogoWrapper from '../LogoWrapper';
 
 const SectionWrapper = styled.div`
   display: flex;
@@ -26,26 +27,26 @@ const SectionWrapper = styled.div`
     }
   }
 `;
-const Logo = styled.img`
-  width: 5rem;
+// const Logo = styled.img`
+//   width: 5rem;
 
-  @media screen and (max-width: 960px) {
-    width: 2.7rem;
-  }
-`;
-const CompanyTitle = styled.div`
-  font-weight: 400;
-  font-size: 1.7rem;
-  color: white;
-  margin-left: 10px;
-  font-family: 'Righteous', sans-serif;
+//   @media screen and (max-width: 960px) {
+//     width: 2.7rem;
+//   }
+// `;
+// const CompanyTitle = styled.div`
+//   font-weight: 400;
+//   font-size: 1.7rem;
+//   color: white;
+//   margin-left: 10px;
+//   font-family: 'Righteous', sans-serif;
 
-  @media screen and (min-width: 960px) {
-    margin: 10px 0px;
-    font-weight: 600;
-    font-size: 2rem;
-  }
-`;
+//   @media screen and (min-width: 960px) {
+//     margin: 10px 0px;
+//     font-weight: 600;
+//     font-size: 2rem;
+//   }
+// `;
 const ShortDesc = styled.div`
   margin: 7px 0px;
   color: #989898;
@@ -63,11 +64,10 @@ const Heart = styled.i`
   line-height: 1.15;
 `;
 
-const FooterLogo = () => (
+const FooterLogoSection = () => (
   <SectionWrapper>
     <div className="logo-section-responsive">
-      <Logo src={Img} />
-      <CompanyTitle>Examples</CompanyTitle>
+      <LogoWrapper />
     </div>
     <ShortDesc>
       <div>
@@ -77,4 +77,4 @@ const FooterLogo = () => (
     </ShortDesc>
   </SectionWrapper>
 );
-export default FooterLogo;
+export default FooterLogoSection;
