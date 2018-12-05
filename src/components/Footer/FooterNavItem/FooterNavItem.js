@@ -56,7 +56,11 @@ const FooterNavItem = ({navTitle, navLink}) => {
       <div className="container-layout-padding">
         <NavTitleWrapper toggler={navToggler}>
           <NavTitle toggler={navToggler}>{navTitle}</NavTitle>
-          <MenuTogglerButton navTitle={navTitle} navToggler={navToggler} />
+          <MenuTogglerButton // <== 문제의 버튼
+            navTitle={navTitle}
+            navToggler={navToggler}
+            clsName={navToggler ? 'fas fa-angle-down' : 'fas fa-angle-up'}
+          />
         </NavTitleWrapper>
         <Foldable toggler={navToggler}>
           <SubMenu navLink={navLink} />

@@ -4,40 +4,6 @@ import FooterNavWrapper from '../FooterNavWrapper';
 import FooterLogoSection from '../FooterLogoSection';
 import CopyRight from '../CopyRight';
 
-const navItems = [
-  {
-    name: 'Market Activity',
-    subNav: [{name: 'Currencies', to: '/'}, {name: 'Exchanges', to: '/'}],
-  },
-  {
-    name: 'Products',
-    subNav: [
-      {name: 'Pricing', to: 'pricing'},
-      {name: 'Market Data API', to: 'cryptocurrency-bitcoin-api'},
-      {name: 'Services', to: 'services'},
-    ],
-  },
-  {
-    name: 'Learn',
-    subNav: [{name: 'Blog', to: '/blog'}, {name: 'Podcast', to: '/podcast'}],
-  },
-  {
-    name: 'Company',
-    subNav: [
-      {name: 'About', to: '/about'},
-      {name: 'Contact Us', to: '/contact'},
-      {name: 'Press Inquiries', to: '/contact'},
-      {name: 'Donate', to: '/donate'},
-    ],
-  },
-  {
-    name: 'Contact',
-    subNav: [
-      {name: 'contact.ex@someexample.co', to: ''},
-      {name: '000-000-0000', to: ''},
-    ],
-  },
-];
 const FooterContainer = styled.div.withConfig({displayName: 'FooterContainer'})`
   width: 100%;
   display: flex;
@@ -62,7 +28,7 @@ const UpperSection = styled.div`
   }
 `;
 
-const FooterWrapper = () => (
+const FooterWrapper = ({navItems}) => (
   <FooterContainer>
     <UpperSection>
       <FooterLogoSection />
