@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react';
+import React from 'react';
 import styled from 'styled-components';
 
 const NavTogglerButton = styled.div`
@@ -9,23 +9,21 @@ const NavTogglerButton = styled.div`
   }
 `;
 
-const MenuTogglerButton = ({navTitle, navToggler, clsName}) => {
-  console.log(clsName);
-  // if (navToggler) {
-  //   return <i key="fas fa-angle-down" className="fas fa-angle-down" />;
-  // }
+const HideAndShow = styled.span`
+  & > *:first-child {
+    display: ${props => (props.expand ? 'inline-block' : 'none')};
+  }
+  & > *:last-child {
+    display: ${props => (props.expand ? 'none' : 'inline-block')};
+  }
+`;
 
-  // return <i key="fas fa-angle-up" className="fas fa-angle-up" />;
-
-  return (
-    <NavTogglerButton key={navTitle}>
-      {navToggler ? (
-        <i key="fas fa-angle-down" className="fas fa-angle-down" />
-      ) : null}
-      {!navToggler ? (
-        <i key="fas fa-angle-up" className="fas fa-angle-up" />
-      ) : null}
-    </NavTogglerButton>
-  );
-};
+const MenuTogglerButton = ({navToggler}) => (
+  <NavTogglerButton>
+    <HideAndShow expand={navToggler}>
+      <i className="fas fa-angle-up" />
+      <i className="fas fa-angle-down" />
+    </HideAndShow>
+  </NavTogglerButton>
+);
 export default MenuTogglerButton;
