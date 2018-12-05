@@ -2,6 +2,8 @@ import React from 'react';
 import styled from 'styled-components';
 import LogoWrapper from '../../../components/Header/LogoWrapper';
 import SortByNav from '../SortByNav';
+import HeaderNav from '../HeaderNav';
+import HeaderAPIButton from '../HeaderAPIButton';
 
 const Container = styled.div`
   display: flex;
@@ -24,15 +26,23 @@ const DetailSection = styled.div`
   justify-content: space-between;
   align-items: center;
 `;
+const HeaderNavContainer = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+`;
 
-const HeaderContainer = () => (
+const HeaderContainer = ({navItems}) => (
   <Container>
     <BriefSection>
       <LogoWrapper />
     </BriefSection>
     <DetailSection>
       <SortByNav />
-      Details
+      <HeaderNavContainer>
+        <HeaderNav navItems={navItems} />
+        <HeaderAPIButton />
+      </HeaderNavContainer>
     </DetailSection>
   </Container>
 );
