@@ -5,7 +5,7 @@ const Container = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  border-left: 1px #808080 solid;
+  border-left: 1px #505050 solid;
 `;
 const ButtonContainer = styled.div`
   padding-left: 1.5rem;
@@ -13,13 +13,12 @@ const ButtonContainer = styled.div`
 const SortByButton = styled.div`
   color: #808080;
   font-family: 'Raleway', sans-serif;
-  /* margin-right: 2rem; */
   &:hover {
-    color: #d8d8d8;
+    color: #e8e8e8;
     transition: all 0.5s ease;
   }
   &:active {
-    color: #d8d8d8;
+    color: #e8e8e8;
   }
 `;
 
