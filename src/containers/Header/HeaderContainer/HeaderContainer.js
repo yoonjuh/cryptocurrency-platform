@@ -1,9 +1,9 @@
 import React from 'react';
 import styled from 'styled-components';
 import LogoWrapper from '../../../components/Header/LogoWrapper';
-import SortByNav from '../SortByNav';
-import HeaderNav from '../HeaderNav';
-import HeaderAPIButton from '../HeaderAPIButton';
+import SortByNav from '../../../components/Header/SortByNav';
+import HeaderNav from '../../../components/Header/HeaderNav';
+import HeaderAPIButton from '../../../components/Header/HeaderAPIButton';
 
 const Container = styled.div`
   display: flex;
@@ -19,33 +19,44 @@ const BriefSection = styled.div`
   align-items: center;
 `;
 const DetailSection = styled.div`
-  flex: 1;
-  color: white;
-  font-size: 1rem;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+  display: none;
+  @media screen and (min-width: 960px) {
+    flex: 1;
+    color: white;
+    font-size: 1rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
 `;
 const HeaderNavContainer = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
 `;
+const TestDiv = styled.div`
+  display: block;
+  color: white;
+  margin-right: 10px;
+  @media screen and (min-width: 960px) {
+    display: none;
+  }
+`;
 
 const HeaderContainer = ({navItems}) => (
-  <Container>
-    <BriefSection>
-      <LogoWrapper />
-    </BriefSection>
-    <DetailSection>
-      <SortByNav />
-      <HeaderNavContainer>
-        <HeaderNav navItems={navItems} />
-        <HeaderAPIButton />
-      </HeaderNavContainer>
-    </DetailSection>
-  </Container>
-);
+    <Container>
+      <BriefSection>
+        <LogoWrapper />
+      </BriefSection>
+      <DetailSection>
+        <SortByNav />
+        <HeaderNavContainer>
+          <HeaderNav navItems={navItems} />
+          <HeaderAPIButton />
+        </HeaderNavContainer>
+      </DetailSection>
+    </Container>
+  );
 
 export default HeaderContainer;
 HeaderContainer.displayName = 'HeaderContainer';
