@@ -4,12 +4,19 @@ import LogoWrapper from '../../../components/Header/LogoWrapper';
 import SortByNav from '../../../components/Header/SortByNav';
 import HeaderNav from '../../../components/Header/HeaderNav';
 import HeaderAPIButton from '../../../components/Header/HeaderAPIButton';
+import BurgerMenu from '../../../components/Header/BurgerMenu';
 
 const Container = styled.div`
+  width: 100%;
   display: flex;
   justify-content: space-between;
   align-items: center;
   background-color: #323232;
+  &.expand {
+    background-color: #18191a;
+    border-bottom: 1px #484848 solid;
+    transition: all 0.1s ease-in;
+  }
 `;
 const BriefSection = styled.div`
   padding: 10px 20px;
@@ -35,72 +42,19 @@ const HeaderNavContainer = styled.div`
   align-items: center;
 `;
 
-const BurgerMenu = styled.button`
-  margin-right: 30px;
-  width: 40px;
-  height: 40px;
-  /* background-color: black; */
-  display: flex;
-  flex-direction: column;
-  justify-content: space-evenly;
-  align-items: center;
-  padding: 5px 5px;
-  transition: all 0.2s ease;
-
-  /* span:nth-child(2) {
-    -webkit-transform: rotate(45deg);
-    -moz-transform: rotate(45deg);
-    -o-transform: rotate(45deg);
-    transform: rotate(45deg);
-  }
-  span:nth-child(3) {
-    -webkit-transform: rotate(-45deg);
-    -moz-transform: rotate(-45deg);
-    -o-transform: rotate(-45deg);
-    transform: rotate(-45deg);
-  } */
-  .bars {
-    width: 40px;
-    height: 4px;
-    /* border: 6px white solid; */
-    background-color: white;
-    border-radius: 5px;
-    z-index: 9999;
-  }
-  &:hover {
-    cursor: pointer;
-    .bm-bar_1 {
-      transform: translate(0px, -4px);
-      transition: all 0.2s linear;
-    }
-
-    .bm-bar_3 {
-      transform: translate(0px, 4px);
-      transition: all 0.2s linear;
-    }
-  }
-  @media screen and (min-width: 960px) {
-    display: none;
-  }
-`;
-
-const HeaderContainer = ({navItems}) => (
-  <Container>
+const HeaderContainer = ({menuToggler, onClickHandler}) => (
+  <Container className={menuToggler ? 'expand' : ''}>
     <BriefSection>
       <LogoWrapper />
     </BriefSection>
     <DetailSection>
       <SortByNav />
       <HeaderNavContainer>
-        <HeaderNav navItems={navItems} />
+        <HeaderNav />
         <HeaderAPIButton />
       </HeaderNavContainer>
     </DetailSection>
-    <BurgerMenu>
-      <span className="bars bm-bar_1" />
-      <span className="bars bm-bar_2" />
-      <span className="bars bm-bar_3" />
-    </BurgerMenu>
+    <BurgerMenu menuToggler={menuToggler} onClickHandler={onClickHandler} />
   </Container>
 );
 
