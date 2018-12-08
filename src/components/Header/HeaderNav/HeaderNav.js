@@ -2,6 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import HeaderNavItem from '../HeaderNavItem';
 import ResponsiveMenuBar from '../ResponsiveMenuBar';
+import withNavItems from '../../../StaticData/withNavItems';
 
 const Container = styled.div`
   display: flex;
@@ -10,13 +11,13 @@ const Container = styled.div`
   line-height: 1.2;
 `;
 
-const HeaderNav = ({navItems}) => (
+const HeaderNav = ({sortedNavItems}) => (
   <Container>
-    {navItems &&
-      navItems.map(({name, subNav}) => (
+    {sortedNavItems &&
+      sortedNavItems.map(({name, subNav}) => (
         <HeaderNavItem key={name} title={name} subNav={subNav} />
       ))}
     <ResponsiveMenuBar />
   </Container>
 );
-export default HeaderNav;
+export default withNavItems(HeaderNav);

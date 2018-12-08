@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import withNavItems from '../../../StaticData/withNavItems';
 
 const Container = styled.div`
   display: flex;
@@ -22,13 +23,14 @@ const SortByButton = styled.div`
   }
 `;
 
-const SortByNav = ({onClickHandler = () => {}}) => (
+const SortByNav = ({sortByNavItems, onClickHandler = () => {}}) => (
   <Container>
-    {['Currencies', 'Exchanges'].map(item => (
-      <ButtonContainer key={item}>
-        <SortByButton onClick={onClickHandler}>{item}</SortByButton>
-      </ButtonContainer>
-    ))}
+    {sortByNavItems &&
+      sortByNavItems.map(item => (
+        <ButtonContainer key={item}>
+          <SortByButton onClick={onClickHandler}>{item}</SortByButton>
+        </ButtonContainer>
+      ))}
   </Container>
 );
-export default SortByNav;
+export default withNavItems(SortByNav);

@@ -1,13 +1,34 @@
-import React from 'react';
+import React, {useState, useEffect} from 'react';
 import styled from 'styled-components';
 import HeaderContainer from '../Header/HeaderContainer';
 import FooterWrapper from '../../components/Footer/FooterWrapper';
+import ResponsiveMenuBar from '../../components/Header/ResponsiveMenuBar';
+import Sidebar from '../../components/Header/Sidebar';
 
 const MainContainer = styled.div.withConfig({displayName: 'MainContainer'})`
   flex: 1;
+  display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: stretch;
+  &.expand {
+    width: 0%;
+    height: 0%;
+    transition: opacity 0.3s ease-out;
+  }
+`;
+const BodyWrapper = styled.div`
+  flex: 1;
+  width: 100%;
+  height: 100%;
+  &.expand {
+    display: none;
+  }
+  @media screen and (min-width: 960px) {
+    flex: 1;
+    width: 100%;
+    height: 100%;
+  }
 `;
 const MainBody = styled.div.withConfig({displayName: 'MainBody'})`
   min-height: 100%;
@@ -16,53 +37,41 @@ const MainBody = styled.div.withConfig({displayName: 'MainBody'})`
   align-items: center;
   font-size: 10rem;
 `;
+const ResponsiveContainer = styled.div.withConfig({
+  displayName: 'ResponsiveContainer',
+})`
+  width: 100%;
+  height: 100%;
+  // flex: 1;
+  display: flex;
+`;
 
-const navItems = [
-  {
-    name: 'Market Activity',
-    subNav: [{name: 'Currencies', to: '/'}, {name: 'Exchanges', to: '/'}],
-  },
-  {
-    name: 'Products',
-    subNav: [
-      {name: 'Pricing', to: 'pricing'},
-      {name: 'Market Data API', to: 'cryptocurrency-bitcoin-api'},
-      {name: 'Services', to: 'services'},
-    ],
-  },
-  {
-    name: 'Learn',
-    subNav: [{name: 'Blog', to: '/blog'}, {name: 'Podcast', to: '/podcast'}],
-  },
-  {
-    name: 'Company',
-    subNav: [
-      {name: 'About', to: '/about'},
-      {name: 'Contact Us', to: '/contact'},
-      {name: 'Press Inquiries', to: '/contact'},
-      {name: 'Donate', to: '/donate'},
-    ],
-  },
-  {
-    name: 'Contact',
-    subNav: [
-      {name: 'contact.ex@someexample.co', to: '/'},
-      {name: '000-000-0000', to: '/'},
-    ],
-  },
-];
+const Main = () => {
+  const [menuToggler, setMenuToggler] = useState(false);
+  const [currentWidth, _] = useState(window.innerWidth);
+  console.log(menuToggler);
 
-const Main = () => (
-  <MainContainer>
-    <HeaderContainer
-      navItems={navItems // TO RE-USE THIS, IT NEEDS A BIT DIFFERENT DATA SET
-        .filter(
-          item => item.name !== 'Market Activity' && item.name !== 'Contact'
-        )}
-    />
-    <MainBody>Main</MainBody>
-    <FooterWrapper navItems={navItems} />
-  </MainContainer>
-);
+  function onClickHandler() {
+    setMenuToggler(!menuToggler);
+  }
+
+  return (
+    <MainContainer>
+      <HeaderContainer
+        menuToggler={menuToggler}
+        onClickHandler={onClickHandler}
+      />
+      <ResponsiveContainer>
+        <Sidebar menuToggler={menuToggler} setMenuToggler={setMenuToggler} />
+        <BodyWrapper className={menuToggler ? 'expand' : ''}>
+          <MainBody>
+            Main <ResponsiveMenuBar />
+          </MainBody>
+          <FooterWrapper />
+        </BodyWrapper>
+      </ResponsiveContainer>
+    </MainContainer>
+  );
+};
 export default Main;
 Main.displayName = 'Main';

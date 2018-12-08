@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import FooterNavWrapper from '../FooterNavWrapper';
 import FooterLogoSection from '../FooterLogoSection';
 import CopyRight from '../CopyRight';
+import withNavItems from '../../../StaticData/withNavItems';
 
 const FooterContainer = styled.div.withConfig({displayName: 'FooterContainer'})`
   width: 100%;
@@ -37,5 +38,5 @@ const FooterWrapper = ({navItems}) => (
     <CopyRight />
   </FooterContainer>
 );
-export default FooterWrapper;
+export default withNavItems(FooterWrapper);
 FooterWrapper.displayName = 'FooterWrapper';
