@@ -17,7 +17,7 @@ const NavLink = styled(Link)`
   padding: 5px 10px;
   font-family: 'Raleway', sans-serif;
   margin: 0rem 2rem 0rem 1.2rem;
-  font-weight: 500;
+  font-weight: 600;
   &:hover {
     background-color: #ffcc00;
     color: black;
@@ -25,7 +25,9 @@ const NavLink = styled(Link)`
   }
 `;
 
-const HeaderAPIButton = () => (
-  <NavLink to="/cryptocurrency-bitconi-api">{'Free API Key'} </NavLink>
+const HeaderAPIButton = ({styles}) => (
+  <NavLink style={styles && {...styles}} to="/cryptocurrency-bitconi-api">
+    {'Free API Key'}{' '}
+  </NavLink>
 );
 export default HeaderAPIButton;
