@@ -37,21 +37,19 @@ const navItems = [
 
 const sortByNavItems = ['Currencies', 'Exchanges'];
 
-export default (Component, ...props) => {
+export default Component => props => {
   function navItemDevider() {
     return navItems.filter(
       item => item.name !== 'Market Activity' && item.name !== 'Contact'
     );
   }
 
-  return function Wrapper() {
-    return (
-      <Component
-        sortByNavItems={sortByNavItems}
-        navItems={navItems}
-        sortedNavItems={navItemDevider()}
-        {...props}
-      />
-    );
-  };
+  return (
+    <Component
+      {...props}
+      sortByNavItems={sortByNavItems}
+      navItems={navItems}
+      sortedNavItems={navItemDevider()}
+    />
+  );
 };
