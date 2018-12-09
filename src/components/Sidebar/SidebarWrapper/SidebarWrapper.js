@@ -1,7 +1,7 @@
-import React, {useEffect} from 'react';
+import React, {useState, useEffect} from 'react';
 import styled from 'styled-components';
 import SidebarItems from '../SideBarItems';
-import HeaderAPIButton from '../HeaderAPIButton';
+import HeaderAPIButton from '../../Header/HeaderAPIButton';
 
 const SidebarWrapper = styled.div`
   color: white;
@@ -20,6 +20,7 @@ const SidebarWrapper = styled.div`
     padding: 1.7rem 0.8rem;
     z-index: 5;
   }
+
   @media screen and (min-width: 960px) {
     transition: opacity 0.2s ease-out;
     &.expand {
@@ -31,6 +32,7 @@ const SidebarWrapper = styled.div`
 const SidebarItemsWrapper = styled.div`
   flex: 1;
 `;
+
 const APIButtonWrapper = styled.div`
   flex: 1;
   display: flex;
@@ -39,6 +41,12 @@ const APIButtonWrapper = styled.div`
 `;
 
 const Sidebar = ({menuToggler, setMenuToggler}) => {
+  const [currentActive, setCurrentActive] = useState('');
+  console.log(currentActive);
+  function onClickHandler(value) {
+    return setCurrentActive(value);
+  }
+
   function updateToggler() {
     const {innerWidth} = window;
     if (innerWidth < 960 || innerWidth > 980) return null;
@@ -53,7 +61,11 @@ const Sidebar = ({menuToggler, setMenuToggler}) => {
   return (
     <SidebarWrapper className={menuToggler ? 'expand' : ''}>
       <SidebarItemsWrapper>
-        <SidebarItems />
+        <SidebarItems
+          currentActive={currentActive}
+          onClickHandler={value => onClickHandler(value)}
+          setCurrentActive={setCurrentActive}
+        />
       </SidebarItemsWrapper>
       <APIButtonWrapper>
         <div style={{borderBottom: '.7px #484848 solid'}} />
