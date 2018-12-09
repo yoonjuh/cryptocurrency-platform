@@ -54,7 +54,7 @@ const DropdownContainer = styled.div`
     display: block;
   }
 `;
-const SubMenuWrapper = styled.div`
+const SubMenuWrapper = styled.div.withConfig({displayName: 'SubMenuWrapper'})`
   padding: 15px 15px 15px 10px;
   background-color: #282828;
   display: flex;

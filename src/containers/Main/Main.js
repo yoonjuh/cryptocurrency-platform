@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import HeaderContainer from '../Header/HeaderContainer';
 import FooterWrapper from '../../components/Footer/FooterWrapper';
 import ResponsiveMenuBar from '../../components/Header/ResponsiveMenuBar';
-import Sidebar from '../../components/Header/Sidebar';
+import Sidebar from '../../components/Sidebar/SidebarWrapper';
 
 const MainContainer = styled.div.withConfig({displayName: 'MainContainer'})`
   flex: 1;
@@ -35,7 +35,7 @@ const MainBody = styled.div.withConfig({displayName: 'MainBody'})`
   display: flex;
   justify-content: center;
   align-items: center;
-  font-size: 10rem;
+  font-size: 5rem;
 `;
 const ResponsiveContainer = styled.div.withConfig({
   displayName: 'ResponsiveContainer',
@@ -48,8 +48,6 @@ const ResponsiveContainer = styled.div.withConfig({
 
 const Main = () => {
   const [menuToggler, setMenuToggler] = useState(false);
-  const [currentWidth, _] = useState(window.innerWidth);
-  console.log(menuToggler);
 
   function onClickHandler() {
     setMenuToggler(!menuToggler);

@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 
 const MenuContainer = styled.button`
-  margin-right: 30px;
+  margin-right: 10px;
   width: 40px;
   height: 40px;
   display: flex;
@@ -52,6 +52,7 @@ const MenuContainer = styled.button`
     transform: rotate(45deg) translate(-10px, -10px);
     width: 25px;
   }
+
   @media screen and (min-width: 960px) {
     display: none;
   }
