@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import HeaderContainer from '../Header/HeaderContainer';
 import FooterWrapper from '../../components/Footer/FooterWrapper';
 import ResponsiveMenuBar from '../../components/Header/ResponsiveMenuBar';
-import Sidebar from '../../components/Sidebar/SidebarWrapper';
+import SidebarWrapper from '../../components/Sidebar/SidebarWrapper';
 
 const MainContainer = styled.div.withConfig({displayName: 'MainContainer'})`
   flex: 1;
@@ -60,7 +60,10 @@ const Main = () => {
         onClickHandler={onClickHandler}
       />
       <ResponsiveContainer>
-        <Sidebar menuToggler={menuToggler} setMenuToggler={setMenuToggler} />
+        <SidebarWrapper
+          menuToggler={menuToggler}
+          setMenuToggler={setMenuToggler}
+        />
         <BodyWrapper className={menuToggler ? 'expand' : ''}>
           <MainBody>
             Main <ResponsiveMenuBar />
