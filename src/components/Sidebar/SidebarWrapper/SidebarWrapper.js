@@ -8,6 +8,7 @@ const SidebarWrapper = styled.div`
   opacity: 0;
   width: 0%;
   height: 0%;
+  overflow: scroll;
 
   &.expand {
     background-color: #18191a;
@@ -42,10 +43,6 @@ const APIButtonWrapper = styled.div`
 
 const Sidebar = ({menuToggler, setMenuToggler}) => {
   const [currentActive, setCurrentActive] = useState('');
-  console.log(currentActive);
-  function onClickHandler(value) {
-    return setCurrentActive(value);
-  }
 
   function updateToggler() {
     const {innerWidth} = window;
@@ -63,7 +60,7 @@ const Sidebar = ({menuToggler, setMenuToggler}) => {
       <SidebarItemsWrapper>
         <SidebarItems
           currentActive={currentActive}
-          onClickHandler={value => onClickHandler(value)}
+          menuToggler={menuToggler}
           setCurrentActive={setCurrentActive}
         />
       </SidebarItemsWrapper>

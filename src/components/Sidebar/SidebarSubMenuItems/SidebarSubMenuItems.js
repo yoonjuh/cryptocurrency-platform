@@ -7,6 +7,7 @@ const SidebarItemWrapper = styled.div`
   /* padding-bottom: ${props => (props.expand ? '0rem' : '1rem')}; */
   margin-bottom: 1rem;
   cursor: pointer;
+  /* z-index: 5; */
 
   .nav-item-container {
     display: flex;
@@ -28,24 +29,57 @@ const SidebarItemWrapper = styled.div`
   }
 `;
 
-const Foldable = styled.div.withConfig({displayName: 'Foldable'})`
-  overflow: hidden;
-  height: ${props => (props.toggler ? '100%' : '0rem')};
-  opacity: ${props => (props.toggler ? '1' : '0')};
+// height: ${props => (props.toggler ? '100%' : '0rem')};
+/* transition: opacity 0.7s ease; */
+const Foldable = styled.div`
+  max-height: 0;
+  overflow: auto;
+  visibility: hidden;
   padding: 0px 15px;
-  transition: opacity 0.5s ease-in-out;
-  transition: height 1s ease;
+  transition: all 0.3s ease-in-out;
+
+  /* -webkit-transform: translate3d(0, 0, 0); */
+  &.expanded {
+    visibility: visible;
+    max-height: 900px;
+    z-index: 9;
+  }
 
   font-size: 2rem;
 `;
+// transition: height 0.4s ease-in-out;
 
 const SidebarSubMenuItems = ({
   name,
   subNav,
   currentActive,
   setCurrentActive,
+  menuToggler,
 }) => {
   const [expand, setExpand] = useState(false);
+
+  function resetState() {
+    /**
+     * WHEN USER TOGGLE SIDEBAR AFTER EXPAND SOME SUB MENUS,
+     * THEN, THIS METHOD WILL BE CALLED TO CLEAN UP TES CSS EFFECTS
+     */
+    setCurrentActive('');
+    setExpand(false);
+  }
+
+  useEffect(
+    /**
+     * WHEN USER TOGGLE THE SIDEBAR OFF,
+     * CHECK IF ANY CSS EFFECTS HAVE INITIALIZED
+     */
+    () => {
+      if (menuToggler) {
+        return null;
+      }
+      return resetState(); // IF THEY ARE, RESET
+    },
+    [menuToggler]
+  );
 
   return (
     <SidebarItemWrapper
@@ -63,10 +97,14 @@ const SidebarSubMenuItems = ({
         </div>
         <MenuTogglerButton navToggler={expand} />
       </div>
-      <Foldable toggler={expand}>
+      <Foldable toggler={expand} className={expand ? 'expanded' : ''}>
         <SubMenu
           navLink={subNav}
-          styles={{fontSize: '1.1rem', padding: '1rem 0rem 0rem 0rem'}}
+          styles={{
+            fontSize: '1.1rem',
+            padding: '1rem 0rem 0rem 0rem',
+            transition: 'opacity .5s ease',
+          }}
         />
       </Foldable>
     </SidebarItemWrapper>

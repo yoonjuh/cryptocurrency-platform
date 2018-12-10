@@ -15,6 +15,7 @@ const SidebarItems = ({
   sortedNavItems,
   currentActive,
   setCurrentActive,
+  menuToggler,
 }) => (
   <Fragment>
     {sortByNavItems.map(item => (
@@ -27,6 +28,7 @@ const SidebarItems = ({
         subNav={subNav}
         currentActive={currentActive}
         setCurrentActive={setCurrentActive}
+        menuToggler={menuToggler}
       />
     ))}
   </Fragment>
