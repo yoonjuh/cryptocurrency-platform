@@ -11,6 +11,9 @@
 # production
 /build
 
+# VSCode settings
+/.vscode
+
 #img files
 src/img
 
