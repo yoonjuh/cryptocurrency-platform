@@ -17,7 +17,7 @@ const IntroContainer = styled.div`
     font-size: 1.5rem;
   }
 `;
-const BodyHeaderContainer = () => {
+const BodyIntro = () => {
   const [descToggler, setDescToggler] = useState(false);
   return (
     <IntroContainer>
@@ -37,4 +37,4 @@ const BodyHeaderContainer = () => {
     </IntroContainer>
   );
 };
-export default BodyHeaderContainer;
+export default BodyIntro;
