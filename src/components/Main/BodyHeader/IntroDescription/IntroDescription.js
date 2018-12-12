@@ -33,10 +33,13 @@ const Description = styled.div`
   overflow: hidden;
 `;
 const ListContainer = styled.div`
-  margin: 1rem 2rem;
+  margin: 1rem 1rem;
   word-break: keep-all;
   display: flex;
   flex-direction: column;
+  @media screen and (min-width: 650px) {
+    margin: 1rem 2rem;
+  }
 `;
 const RelatedLink = styled(Link)`
   color: red;

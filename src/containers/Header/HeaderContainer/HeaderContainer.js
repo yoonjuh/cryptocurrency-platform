@@ -11,7 +11,7 @@ const Container = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background-color: #323232;
+  background-color: #2e2e2e;
   &.expand {
     background-color: #18191a;
     border-bottom: 1px #484848 solid;
