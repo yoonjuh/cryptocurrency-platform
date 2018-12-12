@@ -1,14 +1,13 @@
 import React, {useState, useEffect} from 'react';
 import styled from 'styled-components';
 import {connect} from 'react-redux';
-import {StickyContainer, Sticky} from 'react-sticky';
 import {getAllCurrencies} from '../../../store/actions';
 import BodyContainer from '../BodyContainer';
 import HeaderContainer from '../../Header/HeaderContainer';
 import FooterWrapper from '../../../components/Footer/FooterWrapper';
 import SidebarWrapper from '../../../components/Sidebar/SidebarWrapper';
 import BodyNav from '../BodyNav';
-import BodyHeaderWrapper from '../../../components/Main/BodyHeader/BodyHeaderWrapper';
+import BodyIntro from '../../../components/Main/BodyHeader/BodyIntro';
 
 const MainContainer = styled.div.withConfig({displayName: 'MainContainer'})`
   flex: 1;
@@ -46,7 +45,6 @@ const ResponsiveContainer = styled.div.withConfig({
 })`
   width: 100%;
   height: 100%;
-  // flex: 1;
   display: flex;
 `;
 
@@ -72,25 +70,11 @@ const Main = props => {
           setMenuToggler={setMenuToggler}
         />
         <BodyWrapper className={menuToggler ? 'expand' : ''}>
-          <StickyContainer // <== MainBodyWrapper
-            style={{
-              minHeight: '100%',
-              position: 'relative',
-            }}
-          >
-            <MainBody>
-              <BodyHeaderWrapper />
-              <Sticky>
-                {({style}) => (
-                  <div style={{...style, overflowY: 'auto'}}>
-                    <BodyNav />
-                  </div>
-                )}
-              </Sticky>
-              <BodyContainer />
-            </MainBody>
-          </StickyContainer>
-          {/* <StickyHeaderWrapper /> */}
+          <MainBody>
+            <BodyIntro />
+            <BodyNav />
+            <BodyContainer />
+          </MainBody>
           <FooterWrapper />
         </BodyWrapper>
       </ResponsiveContainer>
