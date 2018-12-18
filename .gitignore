@@ -20,6 +20,9 @@
 #img files
 src/img
 
+#dummy data
+src/StaticData/dummyData.js
+
 # misc
 .DS_Store
 .env.local

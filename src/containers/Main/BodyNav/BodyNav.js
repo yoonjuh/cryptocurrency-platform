@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import styled from 'styled-components';
-import BodyNavItems from '../BodyNavItems';
+import BodyNavItems from '../../../components/Main/BodyNavItems';
 
 const BodyNavContainer = styled.div`
   display: flex;
