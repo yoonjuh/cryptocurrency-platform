@@ -22,13 +22,13 @@ const NavItem = styled.div`
   }
 `;
 
-const BodyNavItems = ({selected, setSelected}) => (
+const BodyNavItems = ({nav, onClickHandler}) => (
   <Fragment>
     {['Day', 'Week', 'Month', 'Year', 'YTD'].map(item => (
       <NavItem
         key={item}
-        className={selected === item ? 'selected' : ''}
-        onClick={() => setSelected(item)}
+        className={nav === item ? 'selected' : ''}
+        onClick={() => onClickHandler(item)}
       >
         {item}
       </NavItem>

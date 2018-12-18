@@ -23,11 +23,12 @@ const BodyNavContainer = styled.div`
 const NavSection = styled.div`
   display: flex;
 `;
-const DropdownSection = styled.div``;
+const DropdownSection = styled.div`
+  font-size: 1rem;
+`;
 
-const BodyNav = () => {
+const BodyNav = ({nav, onClickHandler}) => {
   const [sticky, setSticky] = useState('');
-  const [selected, setSelected] = useState('Day');
 
   useEffect(() => {
     const stickyNav = document.querySelector('#sticky-nav');
@@ -45,7 +46,7 @@ const BodyNav = () => {
   return (
     <BodyNavContainer id="sticky-nav" className={sticky}>
       <NavSection>
-        <BodyNavItems selected={selected} setSelected={setSelected} />
+        <BodyNavItems nav={nav} onClickHandler={onClickHandler} />
       </NavSection>
       <DropdownSection>Dropdown Section</DropdownSection>
     </BodyNavContainer>

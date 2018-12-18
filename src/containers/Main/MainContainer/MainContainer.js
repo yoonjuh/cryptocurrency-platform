@@ -9,7 +9,7 @@ import SidebarWrapper from '../../../components/Sidebar/SidebarWrapper';
 import BodyNav from '../BodyNav';
 import BodyIntro from '../../../components/Main/BodyHeader/BodyIntro';
 
-const MainContainer = styled.div.withConfig({displayName: 'MainContainer'})`
+const MainContainer = styled.div`
   flex: 1;
   display: flex;
   flex-direction: column;
@@ -34,24 +34,13 @@ const BodyWrapper = styled.div`
     height: 100%;
   }
 `;
-const MainBody = styled.div.withConfig({displayName: 'MainBody'})`
-  min-height: 100%;
-  display: flex;
-  flex-direction: column;
-  font-size: 3rem;
-`;
-const ResponsiveContainer = styled.div.withConfig({
-  displayName: 'ResponsiveContainer',
-})`
+const ResponsiveContainer = styled.div`
   width: 100%;
   height: 100%;
   display: flex;
 `;
 
 const Main = props => {
-  useEffect(() => {
-    props.getAllCurrencies();
-  });
   const [menuToggler, setMenuToggler] = useState(false);
 
   function onClickHandler() {
@@ -70,11 +59,7 @@ const Main = props => {
           setMenuToggler={setMenuToggler}
         />
         <BodyWrapper className={menuToggler ? 'expand' : ''}>
-          <MainBody>
-            <BodyIntro />
-            <BodyNav />
-            <BodyContainer />
-          </MainBody>
+          <BodyContainer />
           <FooterWrapper />
         </BodyWrapper>
       </ResponsiveContainer>
