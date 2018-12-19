@@ -3,9 +3,9 @@ import axios from 'axios';
 const {
   REACT_APP_API_BASE_CURRENCY,
   REACT_APP_API_KEY,
-  REACT_APP_API_MARKET_CAP,
   REACT_APP_API_BASE_DASHBOARD,
   REACT_APP_API_BASE_PRICE,
+  REACT_APP_API_BASE_ATH,
 } = process.env;
 
 export async function getAllCurrencies() {
@@ -14,24 +14,24 @@ export async function getAllCurrencies() {
   );
 }
 
-export async function getTotalMarketCap(start) {
-  const res = await axios.get(
-    `${REACT_APP_API_MARKET_CAP}${REACT_APP_API_KEY}&start=${'2018-12-15'}`
-  );
-
-  // console.log(res);
-}
 export async function getDashboard() {
   const res = await axios.get(
     `${REACT_APP_API_BASE_DASHBOARD}${REACT_APP_API_KEY}`
   );
+  const forDemo = res.data.slice(0, 99); /** Demo purpose downsizing */
 
-  return res.data;
+  return forDemo;
 }
+
 export async function getPrice() {
   const res = await axios.get(
     `${REACT_APP_API_BASE_PRICE}${REACT_APP_API_KEY}`
   );
+  return res.data;
+}
+
+export async function getATH() {
+  const res = await axios.get(`${REACT_APP_API_BASE_ATH}${REACT_APP_API_KEY}`);
 
   return res.data;
 }
