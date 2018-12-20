@@ -1,5 +1,7 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import styled from 'styled-components';
+import {connect} from 'react-redux';
+import {getMarketCapDay} from '../../../../store/actions';
 import IntroDescription from '../IntroDescription';
 import Intro from '../Intro';
 import ResponsiveIntro from '../ResponsiveIntro';
@@ -17,14 +19,26 @@ const IntroContainer = styled.div`
     font-size: 1.5rem;
   }
 `;
-const BodyIntro = () => {
+const BodyIntro = props => {
   const [descToggler, setDescToggler] = useState(false);
+  const {
+    marketCap: {market_cap},
+  } = props;
+
+  useEffect(() => {
+    props.getMarketCapDay();
+  }, []);
   return (
     <IntroContainer>
-      <Intro descToggler={descToggler} setDescToggler={setDescToggler} />
+      <Intro
+        descToggler={descToggler}
+        setDescToggler={setDescToggler}
+        marketCap={market_cap}
+      />
       <ResponsiveIntro
         descToggler={descToggler}
         setDescToggler={setDescToggler}
+        marketCap={market_cap}
       />
       <IntroDescription
         clsName={descToggler ? 'expand' : ''}
@@ -37,4 +51,9 @@ const BodyIntro = () => {
     </IntroContainer>
   );
 };
-export default BodyIntro;
+export default connect(
+  ({marketCap}) => ({
+    marketCap,
+  }),
+  {getMarketCapDay}
+)(BodyIntro);

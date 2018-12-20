@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import DescToggleButton from '../DescToggleButton';
+import {marketCapPrettier} from '../../../../utils/helpers';
 
 const ResponsiveIntroWrapper = styled.div`
   display: flex;
@@ -29,11 +30,11 @@ const Highlight = styled.div`
   width: min-content;
 `;
 
-const ResponsiveIntro = ({descToggler, setDescToggler}) => (
+const ResponsiveIntro = ({descToggler, setDescToggler, marketCap}) => (
   <ResponsiveIntroWrapper>
     <div style={{display: 'flex', alignItems: 'center'}}>
       <div>Total Market Cap = </div>
-      <Highlight>$104.90B</Highlight>
+      <Highlight>{marketCapPrettier(marketCap)}</Highlight>
     </div>
     <ResponsiveDescButtonWrapper className={descToggler ? 'expand' : ''}>
       <DescToggleButton

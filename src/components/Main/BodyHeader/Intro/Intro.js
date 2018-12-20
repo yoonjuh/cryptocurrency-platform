@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import DescToggleButton from '../DescToggleButton';
+import {marketCapPrettier} from '../../../../utils/helpers';
 
 const IntroWrapper = styled.div`
   display: none;
@@ -36,11 +37,11 @@ const IntroLowerContainer = styled.div`
   justify-content: flex-start;
   align-items: center;
 `;
-const Intro = ({descToggler, setDescToggler}) => (
+const Intro = ({descToggler, setDescToggler, marketCap}) => (
   <IntroWrapper>
     <IntroUpperContainer>
       <div>The total cryptocurrency market cap is </div>
-      <Highlight>$104.90B</Highlight>.
+      <Highlight>{marketCapPrettier(marketCap)}</Highlight>.
     </IntroUpperContainer>
     <IntroLowerContainer>
       <div>That is 1.44% of all gold in the world.</div>
