@@ -3,6 +3,7 @@ import {
   SORT_BY_WEEK,
   SORT_BY_MONTH,
   SORT_BY_YEAR,
+  SORT_BY_SEARCH,
 } from '../constants/sortBy';
 
 const sortByReducer = (state = [], action) => {
@@ -10,21 +11,24 @@ const sortByReducer = (state = [], action) => {
 
   switch (action.type) {
     case SORT_BY_DAY: {
-      // console.log(`FROM REDUCER, ${JSON.stringify(chunk)}`);
       const result = chunk.map(
         ({
           currency,
-          dayVolume,
-          dayOpen,
-          dayOpenVolume,
+          ath,
           availableSupply,
           maxSupply,
           price,
+          close,
+          dayVolume,
+          dayOpen,
+          dayOpenVolume,
         }) => ({
           currency,
           price,
           availableSupply,
           maxSupply,
+          close,
+          ath,
           open: dayOpen,
           volume: dayVolume,
           openVolume: dayOpenVolume,
@@ -33,13 +37,82 @@ const sortByReducer = (state = [], action) => {
       return result;
     }
     case SORT_BY_WEEK: {
-      return action.price;
+      const result = chunk.map(
+        ({
+          currency,
+          price,
+          availableSupply,
+          maxSupply,
+          close,
+          ath,
+          weekOpen,
+          weekVolume,
+          weekOpenVolume,
+        }) => ({
+          price,
+          availableSupply,
+          maxSupply,
+          currency,
+          ath,
+          close,
+          open: weekOpen,
+          volume: weekVolume,
+          openVolume: weekOpenVolume,
+        })
+      );
+      return result;
     }
     case SORT_BY_MONTH: {
-      return action.price;
+      const result = chunk.map(
+        ({
+          currency,
+          price,
+          availableSupply,
+          maxSupply,
+          close,
+          ath,
+          monthOpen,
+          monthVolume,
+          monthOpenVolume,
+        }) => ({
+          price,
+          availableSupply,
+          maxSupply,
+          currency,
+          close,
+          ath,
+          open: monthOpen,
+          volume: monthVolume,
+          openVolume: monthOpenVolume,
+        })
+      );
+      return result;
     }
     case SORT_BY_YEAR: {
-      return action.price;
+      const result = chunk.map(
+        ({
+          currency,
+          price,
+          availableSupply,
+          maxSupply,
+          ath,
+          close,
+          yearOpen,
+          yearVolume,
+          yearOpenVolume,
+        }) => ({
+          price,
+          availableSupply,
+          maxSupply,
+          currency,
+          ath,
+          close,
+          open: yearOpen,
+          volume: yearVolume,
+          openVolume: yearOpenVolume,
+        })
+      );
+      return result;
     }
     default:
       return state;
