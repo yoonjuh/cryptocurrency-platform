@@ -1,9 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import styled from 'styled-components';
 import {connect} from 'react-redux';
-import {isEmpty} from 'ramda';
-import {arrayConcater} from '../../../utils/helpers';
-import ContentItem from '../../../components/Main/ContentItem';
 import BodySearchBar from '../../../components/Main/BodySearchBar';
 import ContentColumn from '../../../components/Main/ContentColumn';
 import BodyNav from '../BodyNav';
@@ -15,21 +12,28 @@ import {
   sortByMonth,
   sortByYear,
 } from '../../../store/actions/sortBy';
+import {getAllTimeHigh} from '../../../store/actions/ath';
 import {getAllPrice} from '../../../store/actions/price';
+import ContentItems from '../../../components/Main/ContentItems';
 
 const Container = styled.div`
+  width: 100%; /** LAYOUT */
   min-height: 100%;
-  display: flex;
+
+  display: flex; /** CHILD */
   flex-direction: column;
-  font-size: 3rem;
+
+  font-size: 3rem; /** FONT */
 `;
 
 const MainBodyWrapper = styled.div`
-  display: flex;
+  width: 100%; /** LAYOUT */
+
+  display: flex; /** CHILD */
   flex-direction: column;
   align-items: center;
 
-  background-color: white;
+  background-color: white; /** EFFECT */
   outline: none;
   border: none;
 `;
@@ -38,36 +42,36 @@ const BodyContainer = props => {
   const [term, setTerm] = useState('');
   const [selected, setSelected] = useState('');
   const [nav, setNav] = useState('Day');
-  const {dashboard, price, sortBy} = props;
-  const merged = arrayConcater(dashboard, price);
+  const {dashboard, price, sortBy, ath} = props;
 
   useEffect(() => {
     props.getDashboardData();
-    props.getAllPrice();
   }, []);
+
+  useEffect(
+    () => {
+      props.sortByDay(dashboard);
+    },
+    [dashboard]
+  );
+
+  function onChangeHandler({target: {value}}) {
+    setTerm(value);
+  }
 
   function onClickHandler(item) {
     if (item === 'Day') {
-      props.sortByDay(merged);
+      props.sortByDay(dashboard);
     } else if (item === 'Week') {
-      props.sortByWeek(merged);
+      props.sortByWeek(dashboard);
     } else if (item === 'Month') {
-      props.sortByMonth(merged);
+      props.sortByMonth(dashboard);
     } else {
-      props.sortByYear(merged);
+      props.sortByYear(dashboard);
     }
 
     return setNav(item);
   }
-
-  function resetSearch() {
-    setTerm('');
-  }
-
-  useEffect(() => {
-    props.sortByDay(merged);
-  }, []);
-  // console.log(sortBy);
 
   return (
     <Container>
@@ -76,23 +80,21 @@ const BodyContainer = props => {
       <MainBodyWrapper>
         <BodySearchBar
           term={term}
+          onChangeHandler={onChangeHandler}
           setTerm={setTerm}
-          resetSearch={resetSearch}
         />
         <ContentColumn selected={selected} setSelected={setSelected} />
-        {sortBy &&
-          sortBy.map((item, i) => (
-            <ContentItem index={i} item={item} key={item.currency} />
-          ))}
+        <ContentItems term={term} sortBy={sortBy} />
       </MainBodyWrapper>
     </Container>
   );
 };
 export default connect(
-  ({dashboard, price, sortBy}) => ({
+  ({dashboard, price, sortBy, ath}) => ({
     dashboard,
     price,
     sortBy,
+    ath,
   }),
   {
     getDashboardData,
@@ -101,5 +103,6 @@ export default connect(
     sortByWeek,
     sortByMonth,
     sortByYear,
+    getAllTimeHigh,
   }
 )(BodyContainer);

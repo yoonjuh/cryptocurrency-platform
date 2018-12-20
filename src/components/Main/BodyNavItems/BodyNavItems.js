@@ -2,13 +2,17 @@ import React, {Fragment} from 'react';
 import styled from 'styled-components';
 
 const NavItem = styled.div`
-  display: flex;
+  padding: 12px 10px; /** LAYOUT */
+
+  display: flex; /** CHILD */
   justify-content: center;
   align-items: center;
-  color: #93979e;
-  font-size: 15px;
-  padding: 12px 10px;
+
+  font-size: 15px; /** FONT */
   font-family: 'Roboto Slap', sans-serif;
+
+  cursor: pointer; /** EFFECT */
+  color: #93979e;
 
   &:hover {
     color: white;
