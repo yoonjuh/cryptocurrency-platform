@@ -1,4 +1,4 @@
-import {reduce, find, propEq, merge, toString, split} from 'ramda';
+import {reduce, find, propEq, merge, toString, split, reverse} from 'ramda';
 
 export const arrayConcater = (arr1, arr2) => {
   const merged = reduce((array, item) => {
@@ -73,4 +73,17 @@ export const athPrettier = (ch, ath) => {
   if (percentage < 1.0) return '<1%';
 
   return `${parseInt(percentage)}%`;
+};
+
+export const marketCapPrettier = num => {
+  let result = '';
+  if (isNaN(num)) return '-';
+  if (num.length > 8) {
+    const insertComma = num
+      .toString()
+      .replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,');
+    result = reverse(reverse(insertComma).slice(9)).replace(',', '.');
+  }
+
+  return `${result}B`;
 };
