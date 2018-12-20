@@ -1,7 +1,6 @@
-import React from 'react';
+import React, {Suspense, lazy} from 'react';
 import styled from 'styled-components';
 import accounting from 'accounting';
-import SummaryInfo from '../SummaryInfo';
 import {
   Index,
   Name,
@@ -13,6 +12,8 @@ import {
   SupplyWrapper,
   PriceGraph,
 } from '../ColumeLayoutCommon/ColumnLayoutCommon';
+
+const SummaryInfo = lazy(() => import('../SummaryInfo'));
 
 const ColumnContainer = styled.div`
   width: 100%; /** LAYOUT */
@@ -51,6 +52,7 @@ const ColNameWrapper = styled.div`
 
 const InfoIcon = styled.div`
   margin: 0px 5px;
+  color: #bbbbbb;
 
   &:hover {
     color: black;
@@ -172,21 +174,23 @@ const Supply = ({selected, setSelected}) => (
 
 const ContentColumn = ({selected, setSelected}) => (
   // console.log(selected);
-  <ColumnContainer>
-    <Index>#</Index>
-    <Name onClick={() => setSelected('Name')}>
-      <SortIconWrapper className={selected === 'Name' ? 'selected' : ''}>
-        <i className="fas fa-sort-down" />
-      </SortIconWrapper>
-      <ColNameWrapper>Name</ColNameWrapper>
-    </Name>
-    <MarketCap selected={selected} setSelected={setSelected} />
-    <Price selected={selected} setSelected={setSelected} />
-    <Change selected={selected} setSelected={setSelected} />
-    <ATH selected={selected} setSelected={setSelected} />
-    <Volume selected={selected} setSelected={setSelected} />
-    <Supply selected={selected} setSelected={setSelected} />
-    <PriceGraph>PriceGraph</PriceGraph>
-  </ColumnContainer>
+  <Suspense fallback={<div>Loading...</div>}>
+    <ColumnContainer>
+      <Index>#</Index>
+      <Name onClick={() => setSelected('Name')}>
+        <SortIconWrapper className={selected === 'Name' ? 'selected' : ''}>
+          <i className="fas fa-sort-down" />
+        </SortIconWrapper>
+        <ColNameWrapper>Name</ColNameWrapper>
+      </Name>
+      <MarketCap selected={selected} setSelected={setSelected} />
+      <Price selected={selected} setSelected={setSelected} />
+      <Change selected={selected} setSelected={setSelected} />
+      <ATH selected={selected} setSelected={setSelected} />
+      <Volume selected={selected} setSelected={setSelected} />
+      <Supply selected={selected} setSelected={setSelected} />
+      <PriceGraph>PriceGraph</PriceGraph>
+    </ColumnContainer>
+  </Suspense>
 );
 export default ContentColumn;
