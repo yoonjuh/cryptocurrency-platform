@@ -30,7 +30,7 @@ export async function getATH() {
   return res.data;
 }
 
-export async function getMarketCap(start, end) {
+export async function getMarketCap(start) {
   const res = await axios.get(
     `${REACT_APP_API_BASE_MARKET_CAP}${REACT_APP_API_KEY}&start=${start}`
   );

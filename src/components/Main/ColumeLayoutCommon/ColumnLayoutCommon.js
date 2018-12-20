@@ -5,8 +5,6 @@ const Layout = styled.div`
   display: flex;
   justify-content: flex-end;
   align-items: center;
-
-  cursor: pointer;
 `;
 
 export const IndexWrapper = styled.div`
@@ -20,11 +18,17 @@ export const IndexWrapper = styled.div`
 
 export const NameWrapper = styled.div`
   width: 10%;
-  display: flex;
-  cursor: pointer;
+
+  .name-hover-wrapper {
+    width: min-content;
+    display: flex;
+    cursor: pointer;
+  }
+
   @media screen and (max-width: 1440px) {
     width: 13%;
   }
+
   @media screen and (max-width: 1170px) {
     width: 17.5%;
   }
@@ -48,6 +52,7 @@ export const PriceWrapper = styled(Layout)`
   @media screen and (max-width: 1440px) {
     width: 12.5%;
   }
+
   @media screen and (max-width: 1170px) {
     width: 16%;
   }
@@ -79,14 +84,17 @@ export const ChangeWrapper = styled(Layout)`
 export const ATHWrapper = styled(Layout)`
   width: 11.5%;
   display: flex;
+
   @media screen and (max-width: 1440px) {
     width: 12%;
     display: flex;
   }
+
   @media screen and (max-width: 1170px) {
     width: 17%;
     display: flex;
   }
+
   @media screen and (max-width: 700px) {
     width: 0%;
     display: none;
@@ -95,12 +103,15 @@ export const ATHWrapper = styled(Layout)`
 
 export const VolumeWrapper = styled(Layout)`
   width: 17.5%;
+
   @media screen and (max-width: 1600px) {
     width: 14.5%;
   }
+
   @media screen and (max-width: 1440px) {
     width: 17.5%;
   }
+
   @media screen and (max-width: 1170px) {
     width: 26.5%;
   }
@@ -109,16 +120,18 @@ export const VolumeWrapper = styled(Layout)`
 export const SupplyWrapper = styled(Layout)`
   display: flex;
   width: 23.5%;
-
   justify-content: center;
+
   @media screen and (max-width: 1600px) {
     display: flex;
     width: 23.5%;
   }
+
   @media screen and (max-width: 1400px) {
     display: flex;
     width: 26%;
   }
+
   @media screen and (max-width: 1170px) {
     display: none;
     width: 0;
@@ -158,7 +171,9 @@ export const Index = ({styles, children}) => (
   <IndexWrapper style={{...styles}}>{children}</IndexWrapper>
 );
 export const Name = ({styles, children}) => (
-  <NameWrapper style={{...styles}}>{children}</NameWrapper>
+  <NameWrapper style={{...styles}}>
+    <div className="name-hover-wrapper">{children}</div>
+  </NameWrapper>
 );
 export const MarketCap = ({styles, children}) => (
   <MarketCapWrapper style={{...styles}}>{children}</MarketCapWrapper>
