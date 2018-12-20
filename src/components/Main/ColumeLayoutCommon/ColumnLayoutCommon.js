@@ -41,6 +41,10 @@ export const MarketCapWrapper = styled(Layout)`
 export const PriceWrapper = styled(Layout)`
   width: 17.5%;
 
+  @media screen and (max-width: 1600px) {
+    width: 12.5%;
+  }
+
   @media screen and (max-width: 1440px) {
     width: 12.5%;
   }
@@ -109,7 +113,7 @@ export const SupplyWrapper = styled(Layout)`
   justify-content: center;
   @media screen and (max-width: 1600px) {
     display: flex;
-    width: 18%;
+    width: 23.5%;
   }
   @media screen and (max-width: 1400px) {
     display: flex;
@@ -172,7 +176,4 @@ export const ATH = ({styles, children}) => (
 );
 export const Volume = ({styles, children}) => (
   <VolumeWrapper style={{...styles}}>{children}</VolumeWrapper>
-);
-export const Supply = ({styles, children}) => (
-  <SupplyWrapper style={{...styles}}>{children}</SupplyWrapper>
 );

@@ -1,13 +1,9 @@
 import React, {useState, useEffect} from 'react';
 import styled from 'styled-components';
-import {connect} from 'react-redux';
-import {getAllCurrencies} from '../../../store/actions';
 import BodyContainer from '../BodyContainer';
 import HeaderContainer from '../../Header/HeaderContainer';
 import FooterWrapper from '../../../components/Footer/FooterWrapper';
 import SidebarWrapper from '../../../components/Sidebar/SidebarWrapper';
-import BodyNav from '../BodyNav';
-import BodyIntro from '../../../components/Main/BodyHeader/BodyIntro';
 
 const MainContainer = styled.div`
   flex: 1;
@@ -66,10 +62,5 @@ const Main = props => {
     </MainContainer>
   );
 };
-export default connect(
-  ({currency}) => ({
-    currency,
-  }),
-  {getAllCurrencies}
-)(Main);
+export default Main;
 Main.displayName = 'Main';

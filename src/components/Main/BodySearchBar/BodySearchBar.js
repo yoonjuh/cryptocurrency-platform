@@ -5,6 +5,7 @@ const SearchBarContainer = styled.div`
   width: 100%; /** LAYOUT */
   outline: none;
   padding: 5px 2rem;
+  position: relative;
   border: none;
 
   display: flex; /** CHILD */
@@ -56,15 +57,12 @@ const Input = styled.input`
     transition: opacity 0.2s ease-in-out;
   }
 `;
-const ResetButton = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
 
-  font-size: 1.4rem;
+const ResetButton = styled.div`
+  font-size: 1.4rem; /** FONT */
   font-family: 'Open Sans', sans-serif;
 
-  display: none;
+  display: none; /** EFFECT */
 
   &.activate {
     display: block;
@@ -76,29 +74,23 @@ const ResetButton = styled.div`
   }
 `;
 
-const BodySearchBar = ({term, setTerm, resetSearch}) => {
-  console.log();
-  return (
-    <SearchBarContainer>
-      <IconWrapper>
-        <i
-          className="fas fa-search"
-          style={{outline: 'none', border: 'none'}}
-        />
-      </IconWrapper>
-      <Input
-        value={term}
-        onChange={({target: {value}}) => setTerm(value)}
-        placeholder="Search Crytocurrencies"
-        className={term.length > 0 ? 'entered' : ''}
-      />
-      <ResetButton
-        className={term.length > 0 ? 'activate' : ''}
-        onClick={resetSearch}
-      >
-        x
-      </ResetButton>
-    </SearchBarContainer>
-  );
-};
+const BodySearchBar = ({term, onChangeHandler, setTerm}) => (
+  <SearchBarContainer>
+    <IconWrapper>
+      <i className="fas fa-search" style={{outline: 'none', border: 'none'}} />
+    </IconWrapper>
+    <Input
+      value={term}
+      onChange={onChangeHandler}
+      placeholder="Search Crytocurrencies"
+      className={term.length > 0 ? 'entered' : ''}
+    />
+    <ResetButton
+      className={term.length > 0 ? 'activate' : ''}
+      onClick={() => setTerm('')}
+    >
+      x
+    </ResetButton>
+  </SearchBarContainer>
+);
 export default BodySearchBar;
