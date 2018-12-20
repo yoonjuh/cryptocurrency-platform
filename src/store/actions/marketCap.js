@@ -12,6 +12,24 @@ export const getMarketCapDay = () => ({
     .subtract(2, 'hours')
     .toISOString(),
 });
-export const getMarketCapWeek = () => ({type: GET_TOTAL_MARKET_CAP_WEEK});
-export const getMarketCapMonth = () => ({type: GET_TOTAL_MARKET_CAP_MONTH});
-export const getMarketCapYear = () => ({type: GET_TOTAL_MARKET_CAP_YEAR});
+
+export const getMarketCapWeek = () => ({
+  type: GET_TOTAL_MARKET_CAP_WEEK,
+  start: moment()
+    .subtract(7, 'days')
+    .toISOString(),
+});
+
+export const getMarketCapMonth = () => ({
+  type: GET_TOTAL_MARKET_CAP_MONTH,
+  start: moment()
+    .subtract(1, 'months')
+    .toISOString(),
+});
+
+export const getMarketCapYear = () => ({
+  type: GET_TOTAL_MARKET_CAP_YEAR,
+  start: moment()
+    .subtract(1, 'year')
+    .toISOString(),
+});

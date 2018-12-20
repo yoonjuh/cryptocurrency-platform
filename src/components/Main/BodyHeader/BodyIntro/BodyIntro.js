@@ -1,7 +1,12 @@
 import React, {useState, useEffect} from 'react';
 import styled from 'styled-components';
 import {connect} from 'react-redux';
-import {getMarketCapDay} from '../../../../store/actions';
+import {
+  getMarketCapDay,
+  getMarketCapWeek,
+  getMarketCapMonth,
+  getMarketCapYear,
+} from '../../../../store/actions';
 import IntroDescription from '../IntroDescription';
 import Intro from '../Intro';
 import ResponsiveIntro from '../ResponsiveIntro';
@@ -23,11 +28,23 @@ const BodyIntro = props => {
   const [descToggler, setDescToggler] = useState(false);
   const {
     marketCap: {market_cap},
+    nav,
   } = props;
 
-  useEffect(() => {
-    props.getMarketCapDay();
-  }, []);
+  useEffect(
+    () => {
+      if (nav === 'Day') {
+        props.getMarketCapDay();
+      } else if (nav === 'Week') {
+        props.getMarketCapWeek();
+      } else if (nav === 'Month') {
+        props.getMarketCapMonth();
+      } else {
+        props.getMarketCapYear();
+      }
+    },
+    [nav]
+  );
   return (
     <IntroContainer>
       <Intro
@@ -55,5 +72,5 @@ export default connect(
   ({marketCap}) => ({
     marketCap,
   }),
-  {getMarketCapDay}
+  {getMarketCapDay, getMarketCapWeek, getMarketCapMonth, getMarketCapYear}
 )(BodyIntro);

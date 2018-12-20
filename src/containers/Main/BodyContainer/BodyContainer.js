@@ -75,7 +75,7 @@ const BodyContainer = props => {
 
   return (
     <Container>
-      <BodyIntro />
+      <BodyIntro nav={nav} />
       <BodyNav nav={nav} onClickHandler={onClickHandler} />
       <MainBodyWrapper>
         <BodySearchBar
