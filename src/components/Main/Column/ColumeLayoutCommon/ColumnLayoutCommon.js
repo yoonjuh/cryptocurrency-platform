@@ -20,6 +20,7 @@ export const IndexWrapper = styled.div`
 
 export const NameWrapper = styled.div`
   width: 10%;
+  display: flex;
 
   .name-hover-wrapper {
     width: min-content;
@@ -164,6 +165,44 @@ const InfoIconWrapper = styled.div`
     }
   }
 `;
+
+export const ColNameWrapper = styled.div`
+  color: #93979e;
+  transition: color 0.3s ease-out;
+  cursor: pointer;
+
+  &:hover {
+    color: #383838;
+    transition: color 0.3s ease;
+  }
+`;
+
+export const SortIconWrapper = styled.div`
+  opacity: 0;
+  visibility: hidden;
+  margin: 0px 3px 5px 0px;
+
+  &.selected {
+    opacity: 1;
+    visibility: visible;
+    transition: opacity 0.2s linear;
+  }
+`;
+// export const InfoIcon = styled.div`
+//   margin: 0px 5px;
+//   color: #bbbbbb;
+
+//   &:hover {
+//     color: black;
+//     transition: color 0.3s ease;
+
+//     + span {
+//       opacity: 1;
+//       transition: all 0.2s ease-in;
+//       visibility: visible;
+//     }
+//   }
+// `;
 
 export const InfoIcon = ({styles, clsName}) => (
   <InfoIconWrapper style={styles} className={`fas fa-info-circle ${clsName}`} />
