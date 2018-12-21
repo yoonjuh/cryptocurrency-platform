@@ -4,10 +4,12 @@ import SocialMedia from '../SocialMedia';
 import MenuTogglerButton from '../MeneToggleButton';
 import SubMenu from '../SubMenu';
 
-const ItemWrapper = styled.div.withConfig({displayName: 'ItemWrapper'})`
+const ItemWrapper = styled.div`
   line-height: 1.2;
   flex: 1;
   border-top: 0.5px #909090 solid;
+
+  white-space: nowrap;
 
   .container-layout-padding {
     padding: 1rem 1.5rem 1rem 1rem;

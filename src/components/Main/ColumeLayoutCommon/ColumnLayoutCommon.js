@@ -5,6 +5,8 @@ const Layout = styled.div`
   display: flex;
   justify-content: flex-end;
   align-items: center;
+
+  white-space: nowrap;
 `;
 
 export const IndexWrapper = styled.div`
@@ -127,7 +129,7 @@ export const SupplyWrapper = styled(Layout)`
     width: 23.5%;
   }
 
-  @media screen and (max-width: 1400px) {
+  @media screen and (max-width: 1440px) {
     display: flex;
     width: 26%;
   }

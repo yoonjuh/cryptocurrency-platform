@@ -1,4 +1,4 @@
-import React, {Suspense, lazy} from 'react';
+import React, {Suspense, lazy, useEffect, useState} from 'react';
 import styled from 'styled-components';
 import accounting from 'accounting';
 import {
@@ -26,6 +26,15 @@ const ColumnContainer = styled.div`
   color: #93979e;
 
   background-color: #f5f7fa; /** EFFECT */
+
+  &.sticky {
+    margin-top: 42px;
+    z-index: 9999;
+    position: fixed;
+    top: 0;
+    right: 0;
+    box-sizing: border-box;
+  }
 `;
 
 const SortIconWrapper = styled.div`
@@ -172,25 +181,39 @@ const Supply = ({selected, setSelected}) => (
   </SupplyWrapper>
 );
 
-const ContentColumn = ({selected, setSelected}) => (
-  // console.log(selected);
-  <Suspense fallback={<div>Loading...</div>}>
-    <ColumnContainer>
-      <Index>#</Index>
-      <Name onClick={() => setSelected('Name')}>
-        <SortIconWrapper className={selected === 'Name' ? 'selected' : ''}>
-          <i className="fas fa-sort-down" />
-        </SortIconWrapper>
-        <ColNameWrapper>Name</ColNameWrapper>
-      </Name>
-      <MarketCap selected={selected} setSelected={setSelected} />
-      <Price selected={selected} setSelected={setSelected} />
-      <Change selected={selected} setSelected={setSelected} />
-      <ATH selected={selected} setSelected={setSelected} />
-      <Volume selected={selected} setSelected={setSelected} />
-      <Supply selected={selected} setSelected={setSelected} />
-      <PriceGraph>PriceGraph</PriceGraph>
-    </ColumnContainer>
-  </Suspense>
-);
+const ContentColumn = ({selected, setSelected}) => {
+  const [sticky, setSticky] = useState('');
+
+  useEffect(() => {
+    window.addEventListener('scroll', () => {
+      if (window.pageYOffset >= 212 && sticky !== 'sticky') {
+        setSticky('sticky');
+      }
+
+      if (window.pageYOffset <= 212) {
+        setSticky('');
+      }
+    });
+  }, []);
+  return (
+    <Suspense fallback={<div>Loading...</div>}>
+      <ColumnContainer className={sticky}>
+        <Index>#</Index>
+        <Name onClick={() => setSelected('Name')}>
+          <SortIconWrapper className={selected === 'Name' ? 'selected' : ''}>
+            <i className="fas fa-sort-down" />
+          </SortIconWrapper>
+          <ColNameWrapper>Name</ColNameWrapper>
+        </Name>
+        <MarketCap selected={selected} setSelected={setSelected} />
+        <Price selected={selected} setSelected={setSelected} />
+        <Change selected={selected} setSelected={setSelected} />
+        <ATH selected={selected} setSelected={setSelected} />
+        <Volume selected={selected} setSelected={setSelected} />
+        <Supply selected={selected} setSelected={setSelected} />
+        <PriceGraph>PriceGraph</PriceGraph>
+      </ColumnContainer>
+    </Suspense>
+  );
+};
 export default ContentColumn;

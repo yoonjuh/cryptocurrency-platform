@@ -12,7 +12,7 @@ export async function getDashboard() {
   const res = await axios.get(
     `${REACT_APP_API_BASE_DASHBOARD}${REACT_APP_API_KEY}`
   );
-  const forDemo = res.data.slice(0, 99); /** Demo purpose downsizing */
+  const forDemo = res.data.slice(0, 49); /** Demo purpose downsizing */
 
   return forDemo;
 }
