@@ -1,6 +1,6 @@
 import React, {Fragment} from 'react';
 import styled from 'styled-components';
-import {SupplyWrapper} from '../ColumeLayoutCommon/ColumnLayoutCommon';
+import {SupplyWrapper} from '../Column/ColumeLayoutCommon/ColumnLayoutCommon';
 import SupplySummary from '../SupplySummary';
 import {supplyPrettier} from '../../../utils/helpers';
 

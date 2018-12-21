@@ -14,9 +14,7 @@ import {
   ATH,
   Volume,
   PriceGraph,
-  InfoIcon,
-} from '../ColumeLayoutCommon/ColumnLayoutCommon';
-import SupplySummary from '../SupplySummary';
+} from '../Column/ColumeLayoutCommon/ColumnLayoutCommon';
 import SupplyContent from '../SupplyContent';
 
 const ItemWrapper = styled.div`

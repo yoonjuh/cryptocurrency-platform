@@ -21,10 +21,6 @@ const BodyNavContainer = styled.div`
     top: 0;
     right: 0;
     box-sizing: border-box;
-
-    @media screen and (max-width: 1440px) {
-      width: 1440px;
-    }
   }
 `;
 const NavSection = styled.div`
