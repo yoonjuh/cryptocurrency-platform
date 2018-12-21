@@ -2,7 +2,7 @@ import React, {useState, useEffect} from 'react';
 import styled from 'styled-components';
 import {connect} from 'react-redux';
 import BodySearchBar from '../../../components/Main/BodySearchBar';
-import ContentColumn from '../../../components/Main/ContentColumn';
+import ContentColumn from '../../../components/Main/Column/ContentColumn';
 import BodyNav from '../BodyNav';
 import BodyIntro from '../../../components/Main/BodyHeader/BodyIntro';
 import {getDashboardData} from '../../../store/actions/dashboard';
@@ -11,6 +11,13 @@ import {
   sortByWeek,
   sortByMonth,
   sortByYear,
+  sortByName,
+  sortByMarketCap,
+  sortByPrice,
+  sortByChange,
+  sortByATH,
+  sortByVolume,
+  sortBySupply,
 } from '../../../store/actions/sortBy';
 import {getAllTimeHigh} from '../../../store/actions/ath';
 import {getAllPrice} from '../../../store/actions/price';
@@ -40,7 +47,7 @@ const MainBodyWrapper = styled.div`
 
 const BodyContainer = props => {
   const [term, setTerm] = useState('');
-  const [selected, setSelected] = useState('');
+  const [selected, setSelected] = useState({name: '', asc: true});
   const [nav, setNav] = useState('Day');
   const {dashboard, price, sortBy, ath} = props;
 
@@ -53,6 +60,28 @@ const BodyContainer = props => {
       props.sortByDay(dashboard);
     },
     [dashboard]
+  );
+
+  useEffect(
+    () => {
+      const {name, asc} = selected;
+      if (name === 'Name') {
+        props.sortByName(sortBy, asc);
+      } else if (name === 'MarketCap') {
+        props.sortByMarketCap(sortBy, asc);
+      } else if (name === 'Price') {
+        props.sortByPrice(sortBy, asc);
+      } else if (name === 'ATH') {
+        props.sortByATH(sortBy, asc);
+      } else if (name === 'Change') {
+        props.sortByChange(sortBy, asc);
+      } else if (name === 'Volume') {
+        props.sortByVolume(sortBy, asc);
+      } else if (name === 'Supply') {
+        props.sortBySupply(sortBy, asc);
+      }
+    },
+    [selected]
   );
 
   function onChangeHandler({target: {value}}) {
@@ -104,5 +133,12 @@ export default connect(
     sortByMonth,
     sortByYear,
     getAllTimeHigh,
+    sortByName,
+    sortByMarketCap,
+    sortByPrice,
+    sortByChange,
+    sortByATH,
+    sortByVolume,
+    sortBySupply,
   }
 )(BodyContainer);
